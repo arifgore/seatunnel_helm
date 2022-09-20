@@ -1,0 +1,17 @@
+metadata:
+  namespace: 'default'
+  name: 'seatunnel-spark-deployment'
+spec:
+  replicas: '1'
+  template:
+    containers:
+      name: 'seatunnel-spark-container'
+      imageVersion: '2.1.2'
+      command: '/opt/seatunnel/bin/start-seatunnel-spark.sh --master local[4] --deploy-mode client --config /data/spark.streaming.conf'  
+      volumeMounts:
+        mountPath: '/data'
+        name: 'config-volume'
+    volumes:
+      name: 'config-volume'
+      path: '/mnt/data'
+

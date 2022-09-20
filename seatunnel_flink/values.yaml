@@ -1,0 +1,31 @@
+metadata:
+  namespace: "default"
+  name: "seatunnel-flink-deployment"
+spec:
+  flinkConf:
+    numberOfTaskSlots: "2"
+  serviceAccount: "flink"
+  jobManager:
+    replicas: "1"
+    resource:
+      memory: "2048m"
+      cpu: "1"
+  taskManager:
+    resource: 
+      memory: "2048m"
+      cpu: "2"
+  podTemplate:
+    containers:
+      name: "flink-main-container"
+      volumeMounts:
+        mountPath: "/data"
+        name: "config-volume"
+    volumes:
+      name: "config-volume"
+      path: "/mnt/data"
+  job:
+    jarURI: "local:///opt/seatunnel/lib/seatunnel-core-flink.jar"
+    args: '["--config", "/data/flink.streaming.conf"]'
+    parallelism: "2"
+    upgradeMode: "stateless"
+
