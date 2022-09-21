@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.spec.template.containers.name }}
-          image: arifgore/seatunnel-spark:{{ .Values.spec.template.containers.imageVersion }}
+          image: {{ .Values.spec.template.containers.image }}
           command: ['bash', '-c', {{ .Values.spec.template.containers.command | quote}} ]      
           volumeMounts:
             - mountPath: {{ .Values.spec.template.containers.volumeMounts.mountPath }}
