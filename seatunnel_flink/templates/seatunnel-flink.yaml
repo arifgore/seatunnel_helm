@@ -4,7 +4,7 @@ metadata:
   namespace: {{ .Values.metadata.namespace }}
   name: {{ .Values.metadata.name }}
 spec:
-  image: arifgore/seatunnel-flink:2.1.2
+  image: {{ .Values.spec.image }}
   flinkVersion: v1_14
   flinkConfiguration:
     taskmanager.numberOfTaskSlots: {{ .Values.spec.flinkConf.numberOfTaskSlots | quote }}

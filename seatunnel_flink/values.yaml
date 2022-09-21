@@ -2,6 +2,7 @@ metadata:
   namespace: "default"
   name: "seatunnel-flink-deployment"
 spec:
+  image: arifgore/seatunnel-flink:2.1.2
   flinkConf:
     numberOfTaskSlots: "2"
   serviceAccount: "flink"
