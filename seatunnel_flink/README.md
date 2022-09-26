@@ -1,34 +1,6 @@
 # Seatunnel-Spark Setup With Helm
 
 
-## Configuration
-
-By default, Seatunnel will use the configuration file in the cluster's `/mnt/data` directory. For minikube;
-
-- Create a file named `flink-streaming-conf`
-
-    ```shell
-    touch flink-streaming-conf
-    ```
-    For testing you can use the content of [this file](https://github.com/apache/incubator-seatunnel/blob/dev/config/spark.streaming.conf.template).
-
-- Create `/mnt/data` directory in minikube;
-
-    ```shell
-    minikube ssh
-
-    sudo mkdir /mnt/data
-
-    exit 
-    ```
-
-- Run following command to copy the configuration file into minikube cluster;
-
-    ```shell
-    minikube cp spark-streaming-conf /mnt/data/flink-streaming-conf
-    ```
-
----
 ## Install
 
 - First, install the certificate manager;

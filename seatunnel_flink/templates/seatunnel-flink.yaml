@@ -27,10 +27,8 @@ spec:
               name: {{ .Values.spec.podTemplate.containers.volumeMounts.name }}
       volumes:
         - name: {{ .Values.spec.podTemplate.volumes.name }}
-          hostPath:
-            path: {{ .Values.spec.podTemplate.volumes.path }}
-            type: Directory
-
+          configMap:
+            name: {{ .Values.spec.podTemplate.volumes.configMap }}
   job:
     jarURI: {{ .Values.spec.job.jarURI }}
     entryClass: org.apache.seatunnel.core.flink.SeatunnelFlink

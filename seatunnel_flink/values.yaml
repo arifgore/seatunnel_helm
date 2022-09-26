@@ -23,10 +23,36 @@ spec:
         name: "config-volume"
     volumes:
       name: "config-volume"
-      path: "/mnt/data"
+      configMap: "flink-conf"
   job:
     jarURI: "local:///opt/seatunnel/lib/seatunnel-core-flink.jar"
-    args: '["--config", "/data/flink.streaming.conf"]'
+    args: '["--config", "/data/flink.conf"]'
     parallelism: "2"
     upgradeMode: "stateless"
 
+conf:
+  metadata:
+    name: flink-conf
+  data:
+    flinkConf: |
+      
+      env {
+        execution.parallelism = 1
+      }
+
+      source {
+        FakeSourceStream {
+          result_table_name = "fake"
+          field_name = "name,age"
+        }
+      }
+
+      transform {
+        sql {
+          sql = "select name,age from fake"
+        }
+      }
+
+      sink {
+        ConsoleSink {}
+      }
